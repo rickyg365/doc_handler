@@ -1,0 +1,16 @@
+
+--- INSERT NEW SCRIPTS HERE ---
+
+[  PYTHON  ]:
+
+ - [   pyread   ] -> display markdown files using rich
+ - [    todo    ] -> Simple To Do List, run in documents
+
+____________________________________________________
+
+[  BASH  ]:
+
+ - [ scriptify  ] -> make a python file into a script
+ - [  linkify   ] -> like scriptify, but instead of moving file to bin makes a -s link
+
+____________________________________________________
