@@ -1,11 +1,32 @@
 import os
+import csv
+
 from dataclasses import dataclass, field
-# auto_make_doc
+
 """
 Program: Auto script doc creator
 
 - Add read in from csv
 """
+
+
+def read_csv(filepath="compendium.csv"):
+	output = []
+
+	with open(filepath, newline='') as csv_file:
+		reader = csv.reader(csv_file)
+		options = next(reader)
+
+		for _, row in enumerate(reader):
+			# options[0]
+			name = row[0]
+
+			# options[1]
+			description = row[1]
+
+			output.append(Script(name, description))
+
+	return output
 
 
 def export_str_data(data="", filepath=""):
@@ -78,17 +99,29 @@ class DocumentMaker:
 
 if __name__ == "__main__":
 	# Given
-	python_script_list = [
-		Script("pyread", description="display markdown files using rich"),
-		Script("todo", description="Simple To Do List, run in documents")
+	# python_script_list = [
+	# 	Script("pyread", description="display markdown files using rich"),
+	# 	Script("todo", description="Simple To Do List, run in documents")
+	# ]
+	#
+	# bash_script_list = [
+	# 	Script('scriptify', description="make a python file into a script"),
+	# 	Script("linkify", description="like scriptify, but instead of moving file to bin makes a -s link")
+	# ]
+	# Files to read in data
+	script_files = [
+		"python_scripts.csv",
+		"bash_scripts.csv"
 	]
 
-	bash_script_list = [
-		Script('scriptify', description="make a python file into a script"),
-		Script("linkify", description="like scriptify, but instead of moving file to bin makes a -s link")
-	]
+	# Extract Processed Data
+	script_list = []
 
-	doc_creator = DocumentMaker(python_script_list, bash_script_list)
+	for script_file in script_files:
+		script_list.append(read_csv(script_file))
+
+	# Use Document Handler obj to create text and markdown doc
+	doc_creator = DocumentMaker(script_list[0], script_list[1])
 
 	txt_doc = str(doc_creator)
 	md_doc = doc_creator.make_md()
@@ -96,6 +129,6 @@ if __name__ == "__main__":
 	print(txt_doc)
 	print(md_doc)
 
-	base_file_name = "compendium"
-	export_str_data(txt_doc)
-	export_str_data(md_doc, f"{base_file_name}.md")
+	# base_file_name = "compendium"
+	# export_str_data(txt_doc)
+	# export_str_data(md_doc, f"{base_file_name}.md")

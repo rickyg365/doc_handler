@@ -1,0 +1,3 @@
+name,description
+scriptify,make a python file into a script (copy to bin)
+linkify,"like scriptify, but creates -s link instead of mv"
