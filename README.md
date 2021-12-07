@@ -1,9 +1,8 @@
-# doc_handler
+# Doc Handler
 Handles creating docs for script data taken in as a csv
 
 ## Usage
-### Current
-** takes in 2 csv files **
+### takes in 2 csv files 
 - python_scripts.csv
 - bash_scripts.csv
 
